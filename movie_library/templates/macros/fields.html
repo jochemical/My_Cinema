@@ -1,0 +1,30 @@
+{% macro render_text_field(field) %}
+
+<div class="form__group">
+    <!-- field selects a field of the class-object which is send to the html-->
+    <!-- it is premade by the WTForms library  -->
+    <!-- field.label(class_="...") creates a html-label-element with the class ...  -->
+    {{ field.label(class_="form__label") }}
+    <!-- field(class_="...") creates the inputfield as html-element with class ... -->
+    {{ field(class_="form__field") }}
+
+    {% for error in field.errors %}
+        <span class="form__error">
+            {{ error }}
+        </span>
+    {% endfor %}
+
+</div>
+
+{% endmacro %}
+
+{% macro render_area_field(field) %}
+<div class="form__group">
+    {{ field.label(class_="form__label") }}
+    {{ field(rows=4, class_="form__field", style="resize: none") }}
+
+    {%- for error in field.errors %}
+        <span class="form__error">{{ error }}</span>
+    {% endfor %}
+</div>
+{% endmacro %}
